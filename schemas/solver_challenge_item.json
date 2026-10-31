@@ -1,0 +1,40 @@
+{
+  "additionalProperties": false,
+  "description": "A challenge item as the solver side sees it: ``flag_hash`` only, never answers.",
+  "properties": {
+    "challenge_id": {
+      "pattern": "^MGD-([A-Z0-9]{4,12})-(0[1-9]|[1-9][0-9])$",
+      "title": "Challenge Id",
+      "type": "string"
+    },
+    "flag_hash": {
+      "pattern": "^hmac-sha256:[0-9a-f]{64}$",
+      "title": "Flag Hash",
+      "type": "string"
+    },
+    "points": {
+      "minimum": 0,
+      "title": "Points",
+      "type": "integer"
+    },
+    "prompt": {
+      "minLength": 1,
+      "title": "Prompt",
+      "type": "string"
+    },
+    "title": {
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "challenge_id",
+    "title",
+    "prompt",
+    "points",
+    "flag_hash"
+  ],
+  "title": "SolverChallengeItem",
+  "type": "object"
+}

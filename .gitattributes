@@ -1,0 +1,2 @@
+# LF everywhere so vendor hashes (tools/vendor_check.py) match on every OS.
+* text=auto eol=lf

@@ -1,0 +1,161 @@
+{
+  "$defs": {
+    "DifficultyFactors": {
+      "additionalProperties": false,
+      "description": "Four rubric factors, each 0-3. See :mod:`megdan_schema.rubric`.",
+      "properties": {
+        "hops": {
+          "maximum": 3,
+          "minimum": 0,
+          "title": "Hops",
+          "type": "integer"
+        },
+        "obscurity": {
+          "maximum": 3,
+          "minimum": 0,
+          "title": "Obscurity",
+          "type": "integer"
+        },
+        "tool_coverage": {
+          "maximum": 3,
+          "minimum": 0,
+          "title": "Tool Coverage",
+          "type": "integer"
+        },
+        "traps": {
+          "maximum": 3,
+          "minimum": 0,
+          "title": "Traps",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "tool_coverage",
+        "hops",
+        "obscurity",
+        "traps"
+      ],
+      "title": "DifficultyFactors",
+      "type": "object"
+    },
+    "RecordState": {
+      "enum": [
+        "live",
+        "deleted",
+        "wal_uncheckpointed",
+        "freelist",
+        "carved"
+      ],
+      "title": "RecordState",
+      "type": "string"
+    },
+    "ToolCoverage": {
+      "enum": [
+        "auto_commercial",
+        "auto_open",
+        "manual_query",
+        "custom_script"
+      ],
+      "title": "ToolCoverage",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "artefact_file_hash": {
+      "pattern": "^(sha256|hmac-sha256):([0-9a-f]{64})$",
+      "title": "Artefact File Hash",
+      "type": "string"
+    },
+    "artefact_path": {
+      "minLength": 1,
+      "title": "Artefact Path",
+      "type": "string"
+    },
+    "difficulty_factors": {
+      "$ref": "#/$defs/DifficultyFactors"
+    },
+    "how_to_find": {
+      "minLength": 1,
+      "title": "How To Find",
+      "type": "string"
+    },
+    "locator": {
+      "additionalProperties": true,
+      "title": "Locator",
+      "type": "object"
+    },
+    "normalisation_rule": {
+      "minLength": 1,
+      "title": "Normalisation Rule",
+      "type": "string"
+    },
+    "normalised_value": {
+      "title": "Normalised Value",
+      "type": "string"
+    },
+    "parser": {
+      "pattern": "^[^\\s:@]+:[^\\s:@]+@[^\\s:@]+$",
+      "title": "Parser",
+      "type": "string"
+    },
+    "poe_id": {
+      "pattern": "^POE-([A-Z0-9]{4,12})-(000[1-9]|00[1-9][0-9]|0[1-9][0-9]{2}|[1-9][0-9]{3})$",
+      "title": "Poe Id",
+      "type": "string"
+    },
+    "points": {
+      "minimum": 0,
+      "title": "Points",
+      "type": "integer"
+    },
+    "raw_value": {
+      "title": "Raw Value",
+      "type": "string"
+    },
+    "record_state": {
+      "$ref": "#/$defs/RecordState"
+    },
+    "related_poe": {
+      "items": {
+        "pattern": "^POE-([A-Z0-9]{4,12})-(000[1-9]|00[1-9][0-9]|0[1-9][0-9]{2}|[1-9][0-9]{3})$",
+        "type": "string"
+      },
+      "title": "Related Poe",
+      "type": "array"
+    },
+    "source_image_hash": {
+      "pattern": "^(sha256|hmac-sha256):([0-9a-f]{64})$",
+      "title": "Source Image Hash",
+      "type": "string"
+    },
+    "tool_coverage": {
+      "$ref": "#/$defs/ToolCoverage"
+    },
+    "trap_tags": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Trap Tags",
+      "type": "array"
+    }
+  },
+  "required": [
+    "poe_id",
+    "source_image_hash",
+    "artefact_path",
+    "artefact_file_hash",
+    "locator",
+    "record_state",
+    "raw_value",
+    "normalised_value",
+    "normalisation_rule",
+    "parser",
+    "how_to_find",
+    "tool_coverage",
+    "difficulty_factors",
+    "points"
+  ],
+  "title": "PoERecord",
+  "type": "object"
+}

@@ -1,0 +1,59 @@
+{
+  "additionalProperties": false,
+  "description": "A challenge item on the setter side (what a scenario provider returns).\n\n``answers`` and ``poe_refs`` never leave the setter side; use :func:`to_solver_item`\nbefore an item crosses to Sarissa.",
+  "properties": {
+    "answers": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Answers",
+      "type": "array"
+    },
+    "challenge_id": {
+      "pattern": "^MGD-([A-Z0-9]{4,12})-(0[1-9]|[1-9][0-9])$",
+      "title": "Challenge Id",
+      "type": "string"
+    },
+    "flag_hash": {
+      "pattern": "^hmac-sha256:[0-9a-f]{64}$",
+      "title": "Flag Hash",
+      "type": "string"
+    },
+    "poe_refs": {
+      "items": {
+        "pattern": "^POE-([A-Z0-9]{4,12})-(000[1-9]|00[1-9][0-9]|0[1-9][0-9]{2}|[1-9][0-9]{3})$",
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Poe Refs",
+      "type": "array"
+    },
+    "points": {
+      "minimum": 0,
+      "title": "Points",
+      "type": "integer"
+    },
+    "prompt": {
+      "minLength": 1,
+      "title": "Prompt",
+      "type": "string"
+    },
+    "title": {
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "challenge_id",
+    "title",
+    "prompt",
+    "points",
+    "flag_hash",
+    "answers",
+    "poe_refs"
+  ],
+  "title": "ChallengeItem",
+  "type": "object"
+}
