@@ -15,9 +15,9 @@ Layout: `src/megdan_schema/` (one module per contract), `tests/`, `schemas/`, `t
 - Any change to a module changes its vendor hash. Say so in the PR.
 
 ## Conventions
-- Python ≥ 3.11, `pydantic>=2`, hatchling build.
+- Python ≥ 3.11, `pydantic>=2.4` (2.0–2.3 lack `StringConstraints`), hatchling build.
 - Models use `extra="forbid"`. Hash strings are always algorithm-prefixed (`sha256:` / `hmac-sha256:`), lowercase hex.
-- Validators return a list of problems (empty = OK). They don't raise on bad input data.
+- Validators return a list of problems (empty = OK). They report malformed plugin output instead of raising; only bad host-supplied arguments raise.
 - Keep full line and branch coverage. Regenerate `schemas/` (`python -m megdan_schema.export`) whenever a model changes.
 - Wording: follow the neutral-terms rule supplied in task briefs.
 

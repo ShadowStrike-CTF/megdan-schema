@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install
+        run: python -m pip install -e '.[test]'
+      - name: Tests (line + branch coverage, must be 100%)
+        run: python -m pytest --cov --cov-branch --cov-report=term-missing
+      - name: Schemas up to date
+        run: python -m megdan_schema.export --check
+      - name: Vendor hashes
+        run: python tools/vendor_check.py

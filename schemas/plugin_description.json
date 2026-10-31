@@ -1,0 +1,43 @@
+{
+  "$defs": {
+    "Slot": {
+      "enum": [
+        "scenario_provider",
+        "scorer",
+        "panel"
+      ],
+      "title": "Slot",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "What ``describe()`` returns: ``{\"name\", \"version\", \"api\", \"slot\"}``.",
+  "properties": {
+    "api": {
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(?:\\.(0|[1-9][0-9]*))?$",
+      "title": "Api",
+      "type": "string"
+    },
+    "name": {
+      "pattern": "^[a-z0-9_-]+$",
+      "title": "Name",
+      "type": "string"
+    },
+    "slot": {
+      "$ref": "#/$defs/Slot"
+    },
+    "version": {
+      "minLength": 1,
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "version",
+    "api",
+    "slot"
+  ],
+  "title": "PluginDescription",
+  "type": "object"
+}

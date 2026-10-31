@@ -1,0 +1,44 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "created_utc": {
+      "format": "date-time",
+      "title": "Created Utc",
+      "type": "string"
+    },
+    "poligon_version": {
+      "minLength": 1,
+      "title": "Poligon Version",
+      "type": "string"
+    },
+    "seed": {
+      "title": "Seed",
+      "type": "integer"
+    },
+    "set_id": {
+      "pattern": "^[A-Z0-9]{4,12}$",
+      "title": "Set Id",
+      "type": "string"
+    },
+    "source_image_hash": {
+      "pattern": "^(sha256|hmac-sha256):([0-9a-f]{64})$",
+      "title": "Source Image Hash",
+      "type": "string"
+    },
+    "treska_version": {
+      "minLength": 1,
+      "title": "Treska Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "set_id",
+    "seed",
+    "source_image_hash",
+    "poligon_version",
+    "treska_version",
+    "created_utc"
+  ],
+  "title": "SetManifest",
+  "type": "object"
+}

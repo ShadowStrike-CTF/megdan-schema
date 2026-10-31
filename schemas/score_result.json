@@ -1,0 +1,27 @@
+{
+  "additionalProperties": false,
+  "description": "What a scorer returns. ``0 <= points <= max_points``.",
+  "properties": {
+    "detail": {
+      "title": "Detail",
+      "type": "string"
+    },
+    "max_points": {
+      "minimum": 0,
+      "title": "Max Points",
+      "type": "integer"
+    },
+    "points": {
+      "minimum": 0,
+      "title": "Points",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "points",
+    "max_points",
+    "detail"
+  ],
+  "title": "ScoreResult",
+  "type": "object"
+}

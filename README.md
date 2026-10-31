@@ -2,7 +2,7 @@
 
 Shared contracts for the Megdan line of CTF tools: schemas, validators and pure helpers that every Megdan tool agrees on, so the tools can't drift apart.
 
-**v0.1.0** · Python ≥ 3.11 · depends only on `pydantic>=2` · MIT
+**v0.1.0** · Python ≥ 3.11 · depends only on `pydantic>=2.4` · MIT
 
 ## What's in it
 

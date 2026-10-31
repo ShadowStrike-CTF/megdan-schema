@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "megdan-schema"
+version = "0.1.0"
+description = "Shared contracts for the Megdan CTF tools: schemas, validators and pure helpers."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+authors = [{ name = "ShadowStrike" }]
+dependencies = ["pydantic>=2.4"]
+classifiers = [
+    "Private :: Do Not Upload",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8", "pytest-cov>=5"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/megdan_schema"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.coverage.run]
+branch = true
+source = ["megdan_schema", "tools"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 100
